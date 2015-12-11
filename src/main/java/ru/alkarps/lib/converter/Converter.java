@@ -40,7 +40,7 @@ public class Converter {
                     }
                 } else {
                     if (inField.getType().equals(outField.getType())) {
-                        if (inField.getType().getCanonicalName().startsWith("java.lang")
+                        if (inField.getType().getCanonicalName().startsWith("java.")
                                 || inField.getType().isPrimitive()) {
                             outField.set(out, inField.get(in));
                         } else {
@@ -58,7 +58,7 @@ public class Converter {
                 throw new ConverterException(e.getMessage(), e);
             }
         }
-        return (Out) out;
+        return outClass.cast(out);
     }
 
     private static Class<?> getGenericClass(Field field) {
